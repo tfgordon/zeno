@@ -1,0 +1,51 @@
+Zeno is a Java Web application.
+
+Prerequisites
+
+1. A runtime environment for Java (JDK 1.3 or later)
+2. An installation of the MySQL database system.  (See http://www.mysql.org)
+3. A container for Java servlets.  The Open Source Tomcat system, available
+at http://jakarta.apache.org/tomcat/index.html, is recommended.
+
+To install Zeno:
+
+1. Put the zeno.war file into the folder for web applications (default name: webbapps) 
+of your servlet container.
+
+2. Start the servlet runner, to let it unpack and configure the web application 
+in the appropriate way.
+
+3. Stop the servlet runner, if does not terminate with an error message by itself. 
+The Zeno is not yet able to run, because the zeno configuration file is 
+incomplete and the database has yet to be initialized.
+
+4. Configure Zeno by editing <webapps>/zeno/WEB-INF/conf/zeno.properties
+
+5. Creating the database
+
+Use the mysqladmin command line tool to define the <dbName> database, where
+<dbName> is the name you provided for the database in the zeno.properties file
+in step 4 above.
+
+> mysqladmin --user=<dbUserName> -p create <dbName>
+
+use the mysql client command line tool to define and initialize the database
+
+> mysql
+ > use <dbName>
+ > source ./zeno/WEB-INF/conf/zeno.sql
+ > grant all on *.* to <dbUserName>@"%" identified by '<dbPassword>'
+ > quit
+
+This will create the initial zeno superuser:
+
+	username: admin; password: admin
+	
+6. Start the servlet container again.  You may now login, using the
+admin account, to create journals and register users.  You should probably
+change the password of the admin account.  If you do, you also need to manually
+change the password in the <webapps>/zeno/WEB-INF/conf/zeno.properties file
+before restarting the Zeno server.
+
+END
+ 

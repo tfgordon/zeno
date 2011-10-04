@@ -1,0 +1,114 @@
+Change Log
+
+--------------------
+
+Version 2.1.0      2002-12-12
+
+1. The zeno unser interface has now a completely new look and feel.
+- Navigation has become more intuitive
+- Navigation between addressbook and forum can now be done remembering the
+		position in the other device.
+- The icons have changed from pictures to pictograms.
+- The edit view for sections has increased in functionality
+- Global search is possible in almost any situation.
+
+2. The topic views have been abandoned.
+		All Topics of a section may be viewed by the list view and "order by" selction
+		set to "Topic".
+
+3. The number of section vies has been reduced to 3: structure, list and timeline
+
+4. The velocity template have been given a detailed structure.
+
+5. Opening an closing of Articles is now possible.
+
+6. Any section may be given a revision period for new articles.
+
+7. The subscribe function has been extended by daily email notification.
+		look at the new keywords in the file
+		<webapps path>/zeno/WEB-INF/conf/zeno.properties.
+
+8. A change in the database is required. The definition of
+the database can be found in
+	 <webapps path>/zeno/WEB-INF/conf/zeno.sql.
+- the database table "article" has got a new field "dummy_date" to avoid automatically
+	 incrementing the creation date when changing one of the article fields.
+
+*** Recommended is the use of the administrator tool "Upgrade".
+http=//<hostname>[:<port>]/zeno/admin?action=upgrade
+
+9. Some documentation files (PDF) ar included in
+	 <webapps path>/zeno/html/
+- ZenoCMD.pdf
+		Description of some ZENO commands usable by remote client applications
+- ZenoDataModel.pdf
+- ZenoDataModelFigures.pdf
+- ZenoMail.pdf
+		 Description of the mailer tool for ZENO (Jakart-James)
+- ZenoSelectionOperators.pdf
+These pdf files are accessible by
+http://<hostname>[:<port>]/zeno/html
+when zeno webapplication is running.
+
+--------------------
+
+Version 2.0.2
+
+1. The communities concept has been implemented. Each group is registered in just
+one community. Each user may be registered in more than one community.
+The ZENO superuser "zenoadmin" is "superadministrator" for principals.
+He may register additional superadministrators. Superadministrators may create
+communities and appoint administrators for  those communities.
+Administrators may register users, groups and collectives in their community.
+
+2.  Article may be sent to a section (i.e. journal) via email.
+To enable this feature:
+-  the Jakarta-James mailer (application!) has to be installed on the server.
+-  the special user "mailer" must be made a moderator of this section
+-  the section "mailalias" attribute of the secition must given a unique (ZENO wide!)
+alias, to be used in email addresses.
+For example, if the alias is "test" and Zeno is installed on the server with the
+domain name "zeno8.gmd.de", an email can be sent to the section using the
+email address "test@zeno8.gmd.de".   In this first version of the email
+interface, mails are added to the section as "free" articles, not topics or part
+of a topic.  Mails may contain attachments, but the total size of a mail, i
+ncluding all attachments, may not excede 8 MB.
+
+3.  Many bugs have been fixed.   See:
+
+	http://zeno8.gmd.de/zeno/forum?action=editJournal&id=8018&view=search
+
+4. Each section can have its own style sheets.  Currently, you may choose from
+two style sheets:
+- the standard Zeno style sheet
+- a minimal style (named "no style sheet")
+Please, send additional style sheets to  Lothar Oppor (lothar.oppor@ais.fhg.de) to
+be considered for adding the standard library of stylesheets distributed with Zeno.
+
+5. Topics (actual view, structure view, search view and trash view) are
+available
+
+6. According to 1. an extension of the database is required. The definition of
+the database can be found in
+	 ./conf/zeno.sql.
+Some changes in the database table entries are required:
+- The principal guest's class has to changed from "person" to "collective"
+- The principal any's class has to changed from "person" to "community"
+- the table community_member has to be filled.
+- the table plugin has to be created.
+- in the table article a new column "nr" has to be created and filled.
+*** Recommended is the use of the new administrator tool "Upgrade".
+http=//<hostname>[:<port>]/zeno/admin?action=upgrade
+
+7. Zeno now may be used without allowing cookies.
+
+--------------------
+
+Version 2.0.1
+
+This version fixed a bug in the installation procedure andseveral bugs in the
+ZENO user interface.
+
+Version 2.0.0
+
+The initial Open Source release of Zeno.
